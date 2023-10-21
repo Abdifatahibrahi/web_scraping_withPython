@@ -7,6 +7,7 @@ def get_html(base_url, page):
 
     resp = httpx.get(base_url + str(page) , headers=headers, follow_redirects=True)
     html = HTMLParser(resp.text)
+    print(html)
     return html
 
 
@@ -37,13 +38,14 @@ def parse_page(html):
 
 def main():
     base_url = 'https://www.rei.com/s/womens-hiking-clothing?page='
-    for x in range(1,10):
+    for x in range(1,2):
         print(x)
         print("*********************************************")
         html = get_html(base_url, x)
         data = parse_page(html)
         for item in data:
             print(item)
+        print(html)
 
 if __name__ == '__main__':
     main()
